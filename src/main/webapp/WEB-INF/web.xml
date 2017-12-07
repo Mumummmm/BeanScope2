@@ -1,0 +1,27 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+    <display-name>Archetype Created Web Application</display-name>
+    <!-- 为支持request session application websocket标准的bean作用域，在你定义之前需要进行一些较小的初始化配置
+    完成这个初始化设置依赖于你特定的Servlet环境。如果你是在SpringWeb MVC中访问具有作用域的beans，请求内部是通过Spring
+    的DispatcherServlet来处理的，不需要特定设置。如果你使用Servlet2.5的web容器，在Spring的DispatcherServlet之外处理请求
+    你需要注册org.springframework.web.context.request.RequestContextListener ServletRequestListener。对于Servlet 3.0+
+    能通过WebApplicationInitializer接口以编程方式处理。对于更早的容器，可以在web.xml文件中添加下面的声明来代替-->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+    </listener>
+    <!-- 如果监听器设置有问题，作为一种选择，你可以考虑Spring的RequestContextFilter。-->
+    <!--<filter>-->
+        <!--<filter-name>requestContextFilter</filter-name>-->
+        <!--<filter-class>org.springframework.web.filter.RequestContextFilter</filter-class>-->
+    <!--</filter>-->
+    <!--<filter-mapping>-->
+        <!--<filter-name>requestContextFilter</filter-name>-->
+        <!--<url-pattern>/*</url-pattern>-->
+    <!--</filter-mapping>-->
+</web-app>

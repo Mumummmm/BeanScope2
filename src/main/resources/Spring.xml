@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!-- xml配置或者注解驱动的组件和java配置-->
+    <bean id="loginAction" class="com.pansy.LoginAction" scope="request"/>
+    <!-- 找不到原因，不知道为什么没有application-->
+    <!--<bean id="appPreferences" class="com.pansy.AppPreferences" scope="application"/>-->
+    <!-- Spring IOC 不仅管理对象的实例化，而且管理依赖的绑定。例如，如果你想将一个具有Http request作用域的bean注入到
+    另一个具有更长生命周期作用域的bean中，你可以选择注入一个AOP代理来代替具有作用域的bean。
+    通过生命周期安全的方式访问更短的作用域中的beans，作用域代理也不是唯一的方式。你也可以简单的声明你的注入点（例如
+    构造函数setter参数或自动装配领域）-->
+    <bean id="userPreferences" class="com.pansy.UserPreferences" scope="session">
+        <aop:scoped-proxy/>
+    </bean>
+    <bean id="userService" class="com.pansy.SimpleUserService">
+        <property name="userpreferences" ref="userPreferences"/>
+    </bean>
+</beans>
