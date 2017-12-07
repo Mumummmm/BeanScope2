@@ -20,4 +20,9 @@
     <bean id="userService" class="com.pansy.SimpleUserService">
         <property name="userpreferences" ref="userPreferences"/>
     </bean>
+    <!-- 当Spring容器为具有<aop:scope-proxy>标记的bean创建代理时，默认情况下，创建一个基于CGLIB的类代理。该代理只拦截
+    公有方法调用。作为一种选择，对于这种具有作用域的bean你可以配置Spring容器创建标准JDK基于接口的代理，更多细节请看7.6 代理机制-->
+    <bean id="userPreferences2" class="com.pansy.UserPreferences">
+        <aop:scoped-proxy proxy-target-class="false"/>
+    </bean>
 </beans>
